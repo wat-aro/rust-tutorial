@@ -7,4 +7,7 @@ services:
     tty: true
     volumes:
       - .:/src
-      - ~/.cargo/registry:/usr/local/cargo/registry
+      - cargo_home:/usr/local/cargo/registry
+volumes:
+  cargo_home:
+
