@@ -1,4 +1,4 @@
-FROM rust:1.45.0
+FROM rust:1.45.2
 
 ENV TZ=Asia/Tokyo \
     APP_HOME=/src
