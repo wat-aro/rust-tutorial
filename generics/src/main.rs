@@ -1,23 +1,35 @@
-fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
-    let mut largest = list[0];
+fn largest<T: PartialOrd>(list: &[T]) -> &T {
+    let mut largest = &list[0];
 
-    for &item in list.iter() {
+    for item in list.iter() {
         if item > largest {
-            largest = item;
+            largest = item
         }
     }
-
     largest
 }
 
 fn main() {
-    let number_list = vec![32, 50, 25, 100, 65];
+    let number_list = vec![34, 50, 25, 100, 65];
 
     let result = largest(&number_list);
-    println!("The largest number id {}", result);
+    println!("The largest number is {}", result);
 
     let char_list = vec!['y', 'm', 'a', 'q'];
 
     let result = largest(&char_list);
-    println!("The largest number id {}", result);
+    println!("The largest char is {}", result);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::largest;
+
+    #[test]
+    fn collect_largest() {
+        let number_list = vec![34, 50, 25, 100, 65];
+        let result = largest(&number_list);
+
+        assert_eq!(*result, 100);
+    }
 }

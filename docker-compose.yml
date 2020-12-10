@@ -10,4 +10,3 @@ services:
       - cargo_home:/usr/local/cargo/registry
 volumes:
   cargo_home:
-

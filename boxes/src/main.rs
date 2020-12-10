@@ -1,29 +1,18 @@
-use List::{Cons, Nil};
-
 fn main() {
-    let list = List::cons(1, List::cons(2, List::cons(3, Nil)));
-    println!("{:?}", list);
-    println!("{:?}", List::cdr(&list));
-    println!("{:?}", List::cdr(List::cdr(&list)));
+    let c = CustomSmartPointer {
+        data: String::from("mys stuff"),
+    };
+    println!("CustomSmartPointer created.");
+    drop(c);
+    println!("CustomSmartPointer dropped before the end of main.");
 }
 
-#[derive(Debug)]
-enum List {
-    Cons(i32, Box<List>),
-    Nil,
+struct CustomSmartPointer {
+    data: String,
 }
 
-use std::ops::Deref;
-
-impl List {
-    fn cons(head: i32, tail: List) -> List {
-        Cons(head, Box::new(tail))
-    }
-
-    fn cdr(list: &List) -> &List {
-        match list {
-            Nil => &Nil,
-            Cons(_, rest) => rest.deref()
-        }
+impl Drop for CustomSmartPointer {
+    fn drop(&mut self) {
+        println!("Dropping customSmartPointer with data `{}`", self.data);
     }
 }
