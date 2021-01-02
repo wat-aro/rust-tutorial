@@ -7,6 +7,7 @@ services:
     tty: true
     volumes:
       - .:/src
-      - cargo_home:/usr/local/cargo/registry
+      - cargo_home:/usr/local/cargo
+    command: /bin/sh -c "while sleep 1000; do :; done"
 volumes:
   cargo_home:
